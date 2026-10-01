@@ -1,0 +1,10 @@
+{
+  "description": "Provides a customizable dashboard for users to visualize and manage key data insights efficiently in one centralized interface.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "road-1", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.735, 26.145], [91.745, 26.15]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-2", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.735, 26.145], [91.725, 26.155]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-3", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.745, 26.15], [91.74, 26.135]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-4", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.74, 26.135], [91.75, 26.13]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-5", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.725, 26.155], [91.735, 26.16]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-6", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.735, 26.16], [91.755, 26.165]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-7", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.72, 26.14], [91.73, 26.13]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-8", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.72, 26.14], [91.72, 26.145]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-9", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.73, 26.13], [91.72, 26.12]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-10", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.72, 26.12], [91.74, 26.115]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-11", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.74, 26.115], [91.75, 26.125]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-12", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.125], [91.76, 26.125]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-13", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.76, 26.125], [91.765, 26.135]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-14", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.765, 26.135], [91.755, 26.145]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-15", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.765, 26.135], [91.765, 26.155]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-16", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.765, 26.155], [91.755, 26.165]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-17", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.755, 26.165], [91.74, 26.17]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-18", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.155], [91.72, 26.145]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-19", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.72, 26.145], [91.75, 26.125]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-20", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.125], [91.76, 26.115]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-21", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.155], [91.75, 26.145]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-22", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.145], [91.755, 26.145]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-23", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.755, 26.145], [91.765, 26.155]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-24", "status": "normal" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.155], [91.75, 26.165]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-25", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.165], [91.75, 26.17]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "road-26", "status": "critical" },
+      "geometry": { "type": "LineString", "coordinates": [[91.75, 26.125], [91.75, 26.115]] }
+    }
+  ]
+}
