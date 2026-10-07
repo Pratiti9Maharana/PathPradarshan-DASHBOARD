@@ -19,151 +19,303 @@ const CRITICAL_ROADS = [
 ];
 
 const TOOLTIP_EXPLANATIONS: Record<string, string> = {
-  'Betweenness Centrality': 'Indicates how important a road or junction is because many routes pass through it.',
-  'Connectivity': 'Measures how well-connected parts of the road network are to each other.',
-  'Critical Junctions': 'Identifies intersections whose failure would most severely impact network mobility.',
-  'Network Density': 'The ratio of existing roads to all possible roads in the region.',
-  'Resilience Index': 'Overall measure of the network\'s ability to maintain connectivity under disruption.',
+  'Betweenness Centrality':
+    'Indicates how important a road or junction is because many routes pass through it.',
+  Connectivity:
+    'Measures how well-connected parts of the road network are to each other.',
+  'Critical Junctions':
+    'Identifies intersections whose failure would most severely impact network mobility.',
+  'Network Density':
+    'The ratio of existing roads to all possible roads in the region.',
+  'Resilience Index':
+    "Overall measure of the network's ability to maintain connectivity under disruption.",
 };
 
 export default function NetworkAnalysis() {
   const [analysis, setAnalysis] = useState('Betweenness Centrality');
-  const [showTooltip, setShowTooltip] = useState(false);
 
   return (
     <div className="h-full flex overflow-hidden">
-      {/* Map */}
+
+      {/* MAP */}
       <div className="flex-1 min-w-0">
         <div className="h-full relative">
-          <GisMap variant="analysis" showLegend={true} className="h-full" />
-          {/* BC heatmap overlay label */}
-          <div className="absolute top-3 left-3 bg-[#0a0f1e]/90 border border-[#2e2f33] rounded px-3 py-2">
-            <div className="text-[10px] text-[#64748b] uppercase tracking-wider mb-1.5">Betweenness Centrality Scale</div>
+          <GisMap
+            variant="analysis"
+            showLegend={true}
+            className="h-full"
+          />
+
+          {/* BC SCALE */}
+          <div className="absolute top-3 left-3 bg-[#171a1d]/95 border border-[#3a3a3a] px-3 py-2">
+            <div className="text-[10px] text-[#c0bbb1] uppercase tracking-wider mb-1.5">
+              Betweenness Centrality Scale
+            </div>
+
             <div className="flex items-center gap-1">
-              <span className="text-xs text-[#64748b] font-mono">LOW</span>
-              <div className="w-32 h-2 rounded-full" style={{ background: 'linear-gradient(to right, #22c55e, #eab308, #f97316, #ef4444)' }} />
-              <span className="text-xs text-[#64748b] font-mono">HIGH</span>
+              <span className="text-xs text-[#c0bbb1] font-mono">
+                LOW
+              </span>
+
+              <div
+                className="w-32 h-2"
+                style={{
+                  background:
+                    'linear-gradient(to right, #22c55e, #eab308, #f97316, #ef4444)',
+                }}
+              />
+
+              <span className="text-xs text-[#c0bbb1] font-mono">
+                HIGH
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Analysis panel */}
-      <div className="w-80 flex-none border-l border-[#2a2f33] bg-[#111315] px-4 py-3 overflow-y-auto">
-        <div>
-          <h1 className="font-display font-bold text-white text-xl">Network Analysis</h1>
-          <p className="text-[#64748b] text-xs mt-1">Identify critical infrastructure and understand network dependencies.</p>
-        </div>
+{/* ANALYSIS PANEL */}
+<div className="w-80 flex-none border-l border-[#315A45] bg-[#111315] px-4 py-3 overflow-y-auto">
 
-        {/* Select analysis */}
-        <div>
-          <label className="text-[#64748b] text-xs uppercase tracking-wider block mb-2">Select Analysis</label>
-          <div className="space-y-1">
-            {ANALYSIS_OPTIONS.map(opt => (
-              <button
-                key={opt}
-                onClick={() => setAnalysis(opt)}
-                className={`w-full text-left px-3 py-2 rounded text-sm transition-all ${
-                  analysis === opt
-                    ? 'bg-blue-600/20 border border-blue-600/30 text-blue-400'
-                    : 'text-[#64748b] hover:bg-[#171a1d] border border-transparent'
-                }`}
-              >
-                {opt}
-              </button>
-            ))}
-          </div>
-        </div>
+  {/* HEADER */}
+  <div className="pb-3 border-b border-[#315A45]">
+    <div className="text-[10px] uppercase tracking-widest text-[#6B8065] mb-1">
+      NETWORK ANALYSIS
+    </div>
 
-        {/* Tooltip explanation */}
-        <div className="border-y border-[#1e2f47] py-3 my-3">
-          <div
-            className="flex items-center gap-1.5 cursor-pointer"
-            onClick={() => setShowTooltip(!showTooltip)}
-          >
-            <InfoIcon />
-            <span className="text-blue-400 text-xs font-semibold">{analysis}</span>
-          </div>
-          <p className="text-[#94a3b8] text-xs mt-2 leading-relaxed">{TOOLTIP_EXPLANATIONS[analysis]}</p>
-        </div>
+    <h1 className="font-display font-semibold text-white text-base">
+      Network Dependencies
+    </h1>
 
-        {/* Most critical junction */}
-        <div>
-          <h3 className="text-[#64748b] text-xs uppercase tracking-wider mb-2">Most Critical Junction</h3>
-          <div className="border-y border-[#2a2f33] py-3">
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-display font-semibold text-white">Junction #12</span>
-              <RiskBadge level="CRITICAL" />
-            </div>
-            <div className="text-xs space-y-1.5">
-              <div className="flex justify-between">
-                <span className="text-[#64748b]">Centrality Score</span>
-                <span className="text-orange-400 font-mono font-bold">0.78</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#64748b]">Connected Roads</span>
-                <span className="text-white">6</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-[#64748b]">Connected Regions</span>
-                <span className="text-white">5</span>
-              </div>
-            </div>
-            <div className="mt-2 h-1.5 bg-[#2a2f33] rounded-full">
-              <div className="h-full rounded-full bg-orange-500" style={{ width: '78%' }} />
-            </div>
-          </div>
-        </div>
+    <p className="text-[#8a8f98] text-[11px] mt-1 leading-relaxed">
+      Identify critical infrastructure and understand network dependencies.
+    </p>
+  </div>
 
-        {/* Top critical roads */}
-        <div>
-          <h3 className="text-[#64748b] text-xs uppercase tracking-wider mb-2">Top Critical Roads</h3>
-          <div className="space-y-1.5">
-            {CRITICAL_ROADS.map((road, i) => (
-              <div key={road.name} className="flex items-center gap-2 py-2 border-b border-[#1e2d47]">
-                <span className="text-[#334155] text-xs font-mono w-4">{i + 1}.</span>
-                <div className="flex-1 min-w-0">
-                  <div className="text-white text-xs truncate">{road.name}</div>
-                  <div className="text-[#475569] text-[10px] font-mono">BC: {road.score}</div>
-                </div>
-                <RiskBadge level={road.risk} />
-              </div>
-            ))}
-          </div>
-        </div>
+  {/* SELECT ANALYSIS */}
+  <div className="py-3 border-b border-[#315A45]">
 
-        {/* Connectivity stats */}
-        <div className="border-t border-[#2a2f33] pt-3 mt-3">
-          <h3 className="text-[#64748b] text-xs uppercase tracking-wider mb-3">Connectivity Metrics</h3>
-          {[
-            { label: 'Average Degree', value: '3.4', desc: 'roads per junction' },
-            { label: 'Graph Density', value: '0.043', desc: 'edge density' },
-            { label: 'Diameter', value: '9', desc: 'max shortest path' },
-            { label: 'Avg Path Length', value: '4.1', desc: 'hops' },
-          ].map(m => (
-            <div key={m.label} className="flex justify-between items-baseline mb-2">
-              <div>
-                <div className="text-[#94a3b8] text-xs">{m.label}</div>
-                <div className="text-[#475569] text-[10px]">{m.desc}</div>
-              </div>
-              <span className="text-white font-mono font-semibold text-sm">{m.value}</span>
-            </div>
-          ))}
-        </div>
+    <div className="text-[10px] uppercase tracking-widest text-[#6B8065] mb-2">
+      ANALYSIS MODE
+    </div>
 
-        <button className="w-full py-2 text-sm font-medium text-blue-400 border border-blue-500/30 rounded hover:bg-blue-500/10 transition-colors">
-          View Network Report
+    <div className="space-y-0.5">
+      {ANALYSIS_OPTIONS.map((opt) => (
+        <button
+          key={opt}
+          onClick={() => setAnalysis(opt)}
+          className={`w-full flex items-center justify-between px-2 py-1.5 text-xs text-left transition-colors ${
+            analysis === opt
+              ? 'bg-[#315A45]/25 text-[#D2A85A]'
+              : 'text-[#aaa49a] hover:bg-white/[0.03] hover:text-white'
+          }`}
+        >
+          <span>{opt}</span>
+
+          {analysis === opt && (
+            <span className="w-1.5 h-1.5 bg-[#D2A85A]" />
+          )}
         </button>
+      ))}
+    </div>
+
+  </div>
+
+  {/* CURRENT ANALYSIS */}
+  <div className="py-3 border-b border-[#315A45]">
+
+    <div className="flex items-center gap-2 mb-2">
+      <InfoIcon />
+
+      <span className="text-[10px] uppercase tracking-widest text-[#6B8065]">
+        CURRENT ANALYSIS
+      </span>
+    </div>
+
+    <div className="text-sm font-semibold text-white mb-1">
+      {analysis}
+    </div>
+
+    <p className="text-[#aaa49a] text-[11px] leading-relaxed">
+      {TOOLTIP_EXPLANATIONS[analysis]}
+    </p>
+
+  </div>
+
+  {/* MOST CRITICAL JUNCTION */}
+  <div className="py-3 border-b border-[#315A45]">
+
+    <div className="text-[10px] uppercase tracking-widest text-[#6B8065] mb-2">
+      MOST CRITICAL JUNCTION
+    </div>
+
+    <div className="flex items-center justify-between mb-2">
+      <span className="font-display font-semibold text-white text-sm">
+        Junction #12
+      </span>
+
+      <RiskBadge level="CRITICAL" />
+    </div>
+
+    <div className="space-y-1.5 text-[11px]">
+
+      <div className="flex justify-between">
+        <span className="text-[#aaa49a]">
+          Centrality Score
+        </span>
+
+        <span className="text-[#D2A85A] font-mono font-semibold">
+          0.78
+        </span>
       </div>
+
+      <div className="flex justify-between">
+        <span className="text-[#aaa49a]">
+          Connected Roads
+        </span>
+
+        <span className="text-white font-mono">
+          6
+        </span>
+      </div>
+
+      <div className="flex justify-between">
+        <span className="text-[#aaa49a]">
+          Connected Regions
+        </span>
+
+        <span className="text-white font-mono">
+          5
+        </span>
+      </div>
+
+    </div>
+
+    <div className="mt-2 h-1 bg-[#2f332f]">
+      <div
+        className="h-full bg-[#D2A85A]"
+        style={{ width: '78%' }}
+      />
+    </div>
+
+  </div>
+
+  {/* TOP CRITICAL ROADS */}
+  <div className="py-3 border-b border-[#315A45]">
+
+    <div className="text-[10px] uppercase tracking-widest text-[#6B8065] mb-2">
+      TOP CRITICAL ROADS
+    </div>
+
+    <div>
+      {CRITICAL_ROADS.map((road, i) => (
+        <div
+          key={road.name}
+          className="flex items-center gap-2 py-2 border-b border-[#315A45]/70 last:border-b-0"
+        >
+
+          <span className="text-[#596057] text-[10px] font-mono w-4">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+
+          <div className="flex-1 min-w-0">
+            <div className="text-white text-xs truncate">
+              {road.name}
+            </div>
+
+            <div className="text-[#77736b] text-[9px] font-mono mt-0.5">
+              BC: {road.score}
+            </div>
+          </div>
+
+          <RiskBadge level={road.risk} />
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  {/* CONNECTIVITY METRICS */}
+  <div className="py-3 border-b border-[#315A45]">
+
+    <div className="text-[10px] uppercase tracking-widest text-[#6B8065] mb-3">
+      CONNECTIVITY METRICS
+    </div>
+
+    <div className="space-y-2.5">
+
+      {[
+        {
+          label: 'Average Degree',
+          value: '3.4',
+          desc: 'roads per junction',
+        },
+        {
+          label: 'Graph Density',
+          value: '0.043',
+          desc: 'edge density',
+        },
+        {
+          label: 'Diameter',
+          value: '9',
+          desc: 'max shortest path',
+        },
+        {
+          label: 'Avg Path Length',
+          value: '4.1',
+          desc: 'hops',
+        },
+      ].map((m) => (
+        <div
+          key={m.label}
+          className="flex justify-between items-center"
+        >
+
+          <div>
+            <div className="text-[#aaa49a] text-[11px]">
+              {m.label}
+            </div>
+
+            <div className="text-[#77736b] text-[9px]">
+              {m.desc}
+            </div>
+          </div>
+
+          <span className="text-white font-mono font-semibold text-sm">
+            {m.value}
+          </span>
+
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+
+  {/* REPORT */}
+  <button
+    className="w-full mt-3 border border-[#315A45] py-2 text-[11px] font-medium uppercase tracking-wider text-[#D2A85A] transition-colors hover:bg-[#315A45]/20"
+  >
+    View Network Report
+  </button>
+</div>
     </div>
   );
 }
 
 function InfoIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-blue-400">
-      <circle cx="6" cy="6" r="5"/>
-      <path d="M6 5.5v3M6 4h.01"/>
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="text-orange-400"
+    >
+      <circle cx="6" cy="6" r="5" />
+      <path d="M6 5.5v3M6 4h.01" />
     </svg>
   );
 }

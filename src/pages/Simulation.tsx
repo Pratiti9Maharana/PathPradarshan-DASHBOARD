@@ -63,26 +63,32 @@ export default function Simulation() {
         <GisMap
           variant="simulation"
           showLegend={true}
-          className="h-full w-full
-          failureSimulation={ran}"
+          className="h-full w-full"
+          failureSimulation={ran}
         />
 
         {/* Simulation Controls */}
-        <div className="absolute top-6 left-6 z-[1000] w-64 rounded-xl border border-[#1e2d47] bg-[#0a0f1e]/95 p-4 backdrop-blur-sm">
+        <div className="absolute top-6 left-6 z-[1000] w-64 border border-white/15 bg-[#080c14]/95 p-4">
 
-          <div className="mb-3 flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-orange-400 animate-pulse" />
+          <div className="mb-3 flex items-center justify-between border-b border-white/10 pb-3">
+          <div className="flex items-center gap-2"> 
+            <span className="h-2 w-2 bg-orange-400" />
 
-            <h3 className="font-display text-sm font-semibold text-white">
+            <h3 className="font-display text-xs font-semibold uppercase tracking-wider text-white ">
               Simulation Mode
             </h3>
           </div>
+
+          <span className="text-[9px] uppercase tracking-wider text-[#8a8f98]">
+            Configure
+          </span>
+        </div>
 
           <div className="space-y-3">
 
             {/* Failure Type */}
             <div>
-              <label className="mb-1 block text-[10px] uppercase tracking-wider text-[#64748b]">
+              <label className="mb-1 block text-[10px] uppercase tracking-wider text-[#8a8f98]">
                 Failure Type
               </label>
 
@@ -91,11 +97,11 @@ export default function Simulation() {
                   <button
                     key={type}
                     onClick={() => setFailureType(type)}
-                    className={`rounded px-2 py-1 text-xs transition-all ${
+                    className={`border px-2 py-1.5 text-[11px] transition-all ${
                       failureType === type
-                        ? 'border border-orange-500/40 bg-orange-500/20 text-orange-400'
-                        : 'border border-[#1e2d47] bg-[#0f172a] text-[#64748b] hover:text-white'
-                    }`}
+                      ? 'border-orange-500/60 bg-orange-500/10 text-orange-400'
+                      : 'border-[#2a2f33] bg-transparent text-[#8a8f98] hover:border-white/20 hover:text-white'
+                }`}
                   >
                     {type}
                   </button>
@@ -105,11 +111,11 @@ export default function Simulation() {
 
             {/* Location */}
             <div>
-              <label className="mb-1 block text-[10px] uppercase tracking-wider text-[#64748b]">
+              <label className="mb-1 block text-[10px] uppercase tracking-wider text-[#8a8f98]">
                 Location
               </label>
 
-              <select className="w-full rounded border border-[#1e2d47] bg-[#0f172a] px-2 py-1.5 text-xs text-white">
+              <select className="w-full rounded border border-[#2a2f33] bg-[#171a1d] px-2 py-1.5 text-xs text-white">
                 <option>Junction #12 — Kamrup</option>
                 <option>NH-27 Bridge — Nagaon</option>
                 <option>SH-5 Crossing — Jorhat</option>
@@ -118,7 +124,7 @@ export default function Simulation() {
 
             {/* Scenario */}
             <div>
-              <label className="mb-1 block text-[10px] uppercase tracking-wider text-[#64748b]">
+              <label className="mb-1 block text-[10px] uppercase tracking-wider text-[#8a8f98]">
                 Scenario
               </label>
 
@@ -127,10 +133,10 @@ export default function Simulation() {
                   <button
                     key={item}
                     onClick={() => setScenario(item)}
-                    className={`w-full rounded px-2 py-1 text-left text-xs transition-all ${
+                    className={`w-full border-l-2 px-2 py-1.5 text-left text-[11px] transition-all ${
                       scenario === item
-                        ? 'border border-red-500/30 bg-red-500/15 text-red-400'
-                        : 'text-[#64748b] hover:text-white'
+                        ? 'border-1-red-500 bg-500/10 text-red-400'
+                        : 'border-1-transparent text-[#8a8f98] hover:border-1-white/20 hover:bg-white[0.03] hover:text-white'
                     }`}
                   >
                     {item}
@@ -145,8 +151,8 @@ export default function Simulation() {
               disabled={running}
               className={`w-full rounded-lg py-2 font-display text-sm font-semibold transition-all ${
                 running
-                  ? 'cursor-wait bg-orange-500/20 text-orange-400'
-                  : 'bg-orange-500 text-white hover:bg-orange-600'
+                  ? 'cursor-wait border-orange-500/40 bg-orange-500/10 text-orange-400'
+                  : 'bg-orange-500 bg-orange-500/10 text-white hover:bg-orange-400'
               }`}
             >
               {running ? 'Running…' : 'Run Simulation'}
@@ -157,14 +163,14 @@ export default function Simulation() {
       </div>
 
       {/* RIGHT RESULTS PANEL */}
-      <aside className="flex h-full w-80 flex-none flex-col overflow-y-auto border-l border-[#1e2d47] bg-[#060d1f] p-4">
+      <aside className="flex h-full w-80 flex-none flex-col overflow-y-auto border-l border-[#315A45] bg-[#111315] px-4 py-3 pb-5">
 
-        <div className="mb-4">
+        <div className="mb-4 border-b border-[#315A45] pb-3">
           <h1 className="font-display text-xl font-bold text-white">
             Failure Simulation
           </h1>
 
-          <p className="mt-1 text-xs text-[#64748b]">
+          <p className="mt-1 text-xs text-[#8a8f98]">
             Test how the network responds when critical infrastructure fails.
           </p>
         </div>
@@ -173,11 +179,11 @@ export default function Simulation() {
           <div className="space-y-4">
 
             {/* Results */}
-            <div className="rounded-lg border border-red-500/20 bg-[#0f172a] p-4">
+            <div className="border-y border-[#315a45] py-3">
               <div className="mb-3 flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-red-500" />
 
-                <span className="text-xs font-semibold uppercase tracking-wider text-red-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-orange-400">
                   Simulation Results
                 </span>
               </div>
@@ -214,7 +220,7 @@ export default function Simulation() {
                     key={result.label}
                     className="flex justify-between text-xs"
                   >
-                    <span className="text-[#64748b]">
+                    <span className="text-[#8a8f98]">
                       {result.label}
                     </span>
 
@@ -230,13 +236,13 @@ export default function Simulation() {
 
             {/* Before / After */}
             <div>
-              <h3 className="mb-2 text-xs uppercase tracking-wider text-[#64748b]">
+              <h3 className="mb-2 text-xs uppercase tracking-wider text-[#8a8f98]">
                 Before / After Comparison
               </h3>
 
               <div className="grid grid-cols-2 gap-2">
 
-                <div className="rounded-lg border border-green-500/20 bg-[#0f172a] p-3 text-center">
+                <div className="border border-green-500/20 bg-[#171a1d] p-3 text-center">
                   <div className="mb-2 text-[10px] font-semibold uppercase text-green-400">
                     Before Failure
                   </div>
@@ -247,12 +253,12 @@ export default function Simulation() {
                     strokeWidth={6}
                   />
 
-                  <div className="mt-1 text-[10px] text-[#64748b]">
+                  <div className="mt-1 text-[10px] text-[#8a8f98]">
                     Fully connected
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-red-500/20 bg-[#0f172a] p-3 text-center">
+                <div className="border border-red-500/20 bg-[#171a1d] p-3 text-center">
                   <div className="mb-2 text-[10px] font-semibold uppercase text-red-400">
                     After Failure
                   </div>
@@ -263,7 +269,7 @@ export default function Simulation() {
                     strokeWidth={6}
                   />
 
-                  <div className="mt-1 text-[10px] text-[#64748b]">
+                  <div className="mt-1 text-[10px] text-[#8a8f98]">
                     2 segments isolated
                   </div>
                 </div>
@@ -272,8 +278,8 @@ export default function Simulation() {
             </div>
 
             {/* Disruption Graph */}
-            <div className="rounded-lg border border-[#1e2d47] bg-[#0f172a] p-3">
-              <div className="mb-2 text-xs uppercase tracking-wider text-[#64748b]">
+            <div className="border border-[#343434] p-3">
+              <div className="mb-2 text-xs uppercase tracking-wider text-[#8a8f98]">
                 Disruption Graph
               </div>
 
@@ -282,7 +288,7 @@ export default function Simulation() {
 
             {/* Routes */}
             <div>
-              <h3 className="mb-2 text-xs uppercase tracking-wider text-[#64748b]">
+              <h3 className="mb-2 text-xs uppercase tracking-wider text-[#8a8f98]">
                 Recommended Resilient Routes
               </h3>
 
@@ -290,7 +296,7 @@ export default function Simulation() {
                 {ROUTES.map((route) => (
                   <div
                     key={route.id}
-                    className="rounded-lg border border-[#1e2d47] bg-[#0f172a] p-3 transition-colors hover:border-[#2d3f5e]"
+                    className="border-b border-[#343a40] py-3 transition-colors hover:bg-white/[0.02]"
                   >
                     <div className="mb-1 flex items-start justify-between">
                       <span className="text-xs font-medium text-white">
@@ -300,7 +306,7 @@ export default function Simulation() {
                       <RiskBadge level={route.risk} />
                     </div>
 
-                    <div className="mb-2 text-[10px] text-[#64748b]">
+                    <div className="mb-2 text-[10px] text-[#8a8f98]">
                       {route.name}
                     </div>
 
@@ -310,7 +316,7 @@ export default function Simulation() {
                         <div className="font-mono text-white">
                           {route.distance}
                         </div>
-                        <div className="text-[#475569]">
+                        <div className="text-[#626a73]">
                           Distance
                         </div>
                       </div>
@@ -319,7 +325,7 @@ export default function Simulation() {
                         <div className="font-mono text-white">
                           {route.time}
                         </div>
-                        <div className="text-[#475569]">
+                        <div className="text-[#626a73]">
                           Est. Time
                         </div>
                       </div>
@@ -328,7 +334,7 @@ export default function Simulation() {
                         <div className="font-mono text-green-400">
                           {route.connectivity}
                         </div>
-                        <div className="text-[#475569]">
+                        <div className="text-[#626a73]">
                           Connect.
                         </div>
                       </div>
@@ -338,7 +344,7 @@ export default function Simulation() {
                 ))}
               </div>
 
-              <button className="mt-2 w-full rounded border border-blue-500/30 py-1.5 text-xs font-medium text-blue-400 transition-colors hover:bg-blue-500/10">
+              <button className="mt-3 w-full border border-orange-500/50 bg-transparent py-2 text-xs font-medium uppercase tracking-wider text-orange-400 transition-colors hover:bg-orange-500/10">
                 View Route Details
               </button>
             </div>
@@ -348,13 +354,13 @@ export default function Simulation() {
           /* Empty State */
           <div className="flex flex-1 flex-col items-center justify-center text-center">
 
-            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#1e2d47] bg-[#0f172a]">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#2a2f33] bg-[#171a1d]">
               <svg
                 width="28"
                 height="28"
                 viewBox="0 0 28 28"
                 fill="none"
-                stroke="#3b82f6"
+                stroke="#8a8f98"
                 strokeWidth="1.5"
               >
                 <path d="M14 6v8l5 3" />
@@ -362,7 +368,7 @@ export default function Simulation() {
               </svg>
             </div>
 
-            <p className="text-sm text-[#64748b]">
+            <p className="text-sm text-[#8a8f98]">
               Configure failure parameters and run simulation to see results.
             </p>
 
@@ -430,7 +436,7 @@ function NetworkDisruptionGraph() {
             cx={node.x}
             cy={node.y}
             r={6}
-            fill={node.ok ? '#0f172a' : '#1f1020'}
+            fill={node.ok ? '#171a1d' : '#1f1020'}
             stroke={node.ok ? '#22c55e' : '#ef4444'}
             strokeWidth="1.5"
           />
