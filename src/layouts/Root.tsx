@@ -24,7 +24,7 @@ export default function Root() {
 
           <div>
             <div className="font-display font-bold text-white text-[15px] leading-tight tracking-wide">
-              PATHPRADARSHAN
+              MARG DRISHTI
             </div>
 
             <div className="text-[#8a8f98] text-[9px] tracking-wider uppercase">
